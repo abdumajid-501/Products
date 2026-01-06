@@ -3,7 +3,7 @@ import {
   increase,
   decrease,
   removeFromCart,
-} from "../../features/productsSlice"
+} from "../../features/productsSlice";
 
 function Cart() {
   const cartProducts = useSelector((state) => state.products);
@@ -30,17 +30,19 @@ function Cart() {
         {cartProducts.map((item) => (
           <div
             key={item.id}
-            className="flex gap-4 items-center border rounded-lg p-4 shadow-sm"
+            className="flex flex-col sm:flex-row gap-4 sm:items-center border rounded-lg p-4 shadow-sm"
           >
             <img
               src={item.image}
               alt={item.title}
-              className="w-24 h-24 object-contain"
+              className="w-24 h-24 object-contain self-center sm:self-auto"
             />
 
             <div className="flex-1">
-              <h2 className="font-semibold text-lg">{item.title}</h2>
-              <p className="text-sm text-gray-500 line-clamp-2">
+              <h2 className="font-semibold text-lg break-words">
+                {item.title}
+              </h2>
+              <p className="text-sm text-gray-500 break-words">
                 {item.description}
               </p>
               <p className="mt-2 font-semibold text-green-600">
@@ -68,15 +70,15 @@ function Cart() {
 
             <button
               onClick={() => dispatch(removeFromCart(item.id))}
-              className="text-red-500 hover:text-red-700 ml-4"
+              className="text-red-500 hover:text-red-700 sm:ml-4"
             >
-              O‘chirish
+              O'chirish
             </button>
           </div>
         ))}
       </div>
 
-      <div className="flex justify-between items-center mt-8 border-t pt-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-8 border-t pt-4">
         <h2 className="text-xl font-semibold">
           Jami: ${totalPrice.toFixed(2)}
         </h2>
